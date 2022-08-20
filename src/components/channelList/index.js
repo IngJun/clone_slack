@@ -1,3 +1,8 @@
+import { useState } from "react";
+import { FiPlus, IconName } from "react-icons/fi";
+
+import ChannelCreator from "../ChannelCreator";
+import Modal from "../common/modal";
 import { ChannelIcon, ChannelListWrapper, PlusIcon } from "./style";
 
 const channels = [
@@ -25,6 +30,12 @@ const channels = [
 ];
 
 const ChannelList = () => {
+  const [modalToggel, setModlaToggle] = useState(false);
+
+  const closeModal = () => {
+    setModlaToggle(false);
+  };
+
   // [GFT] api/channel/list
   return (
     <ChannelListWrapper>
@@ -35,11 +46,16 @@ const ChannelList = () => {
       ))}
       <PlusIcon
         onClick={() => {
-          // [POST] api/channel
+          setModlaToggle(true);
         }}
       >
-        +
+        <FiPlus></FiPlus>
       </PlusIcon>
+
+      <Modal visible={modalToggel} closeModal={closeModal}>
+        {/* 여기에 원하는 태그 넣어서 사용 */}
+        <ChannelCreator></ChannelCreator>
+      </Modal>
     </ChannelListWrapper>
   );
 };
