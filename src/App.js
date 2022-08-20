@@ -1,11 +1,12 @@
 import { ThemeProvider } from "styled-components";
 import "./App.css";
+import MainPage from "./pages/mainpage";
 import theme from "./shared/themeStyle";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App"></div>
+      <MainPage />
     </ThemeProvider>
   );
 }

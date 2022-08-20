@@ -19,6 +19,8 @@ const margin = {
 const palette = {
   purple: "#4A154B",
   deep_purple: "#2A092A",
+  light_grey: "#BDBDBD",
+  dark_grey: "#616061",
 };
 
 const theme = {
