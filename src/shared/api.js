@@ -41,7 +41,7 @@ export const apis = {
 export const ChatAPI = {
   // 채널 목록 조회
   getChatRoom: () =>
-    api.get("/api/channel", {
+    api.get("/api/channel/list", {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
@@ -65,6 +65,13 @@ export const ChatAPI = {
 
   // 채널 접속하기
   enterRoom: (channel_id) =>
+    api.get(`/api/channel/${channel_id}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  getUserList: (channel_id) =>
     api.get(`/api/channel/${channel_id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,

@@ -1,20 +1,24 @@
+import { useParams } from "react-router";
 import styled from "styled-components";
 import ChannelList from "../components/channelList";
 import ChattingList from "../components/chattingList";
 import UserList from "../components/userList";
 
 const Channelhome = () => {
+  const params = useParams().channel_id;
   return (
     <MainPageWrapper>
       <Header></Header>
       <BodyWrapper>
         <MenuWrapper>
           <ChannelList />
-          <UserList />
+          {params ? <UserList /> : null}
         </MenuWrapper>
-        <ChattingWrapper>
-          <ChattingList></ChattingList>
-        </ChattingWrapper>
+        {params ? (
+          <ChattingWrapper>
+            <ChattingList></ChattingList>
+          </ChattingWrapper>
+        ) : null}
       </BodyWrapper>
     </MainPageWrapper>
   );
@@ -44,18 +48,19 @@ const Header = styled.header`
   background-color: ${(props) => props.theme.palette.deep_purple};
 `;
 const BodyWrapper = styled.div`
+  width: 100%;
   height: 100%;
   display: flex;
 `;
 const MenuWrapper = styled.div`
-  width: 20%;
+  width: 350px;
   height: 100%;
   border-right: 0.1px solid grey;
   display: flex;
   background-color: ${(props) => props.theme.palette.purple};
 `;
 const ChattingWrapper = styled.div`
-  width: 80%;
+  /* width: 80%; */
   height: 100%;
   background-color: white;
 `;
