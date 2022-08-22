@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import useInput from "../../shared/hooks/useInput";
+import { ChatAPI } from "../../shared/api";
 
 import {
   UserCreatorWrapper,
@@ -10,7 +12,7 @@ import {
   TextBox,
 } from "./style";
 
-const UserCreator = ({ closeModal }) => {
+const UserCreator = ({ visible, closeModal }) => {
   const [username, usernameHandler, setUsername] = useInput();
 
   const submitForm = {
@@ -26,8 +28,20 @@ const UserCreator = ({ closeModal }) => {
       setUsername("");
       closeModal();
       // [POST] api/channel/invite
+      ChatAPI.inviteUser(submitForm)
+        .then((res) => {
+          console.log("유저 추가", res);
+          // props로 state 관리
+        })
+        .catch((error) => {
+          console.log("유저추가 실패", error);
+        });
     }
   };
+  useEffect(() => {
+    // 모달 닫으면 값 초기화
+    setUsername("");
+  }, [visible]);
 
   return (
     <UserCreatorWrapper>

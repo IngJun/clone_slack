@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import useInput from "../../shared/hooks/useInput";
+import { ChatAPI } from "../../shared/api";
 
 import {
   ChannelCreatorWrapper,
@@ -10,7 +12,7 @@ import {
   TextBox,
 } from "./style";
 
-const ChannelCreator = ({ closeModal }) => {
+const ChannelCreator = ({ visible, closeModal }) => {
   const [channelName, channelNameHandler, setChannelName] = useInput();
   const [description, descriptionHandler, setDescription] = useInput();
 
@@ -28,8 +30,21 @@ const ChannelCreator = ({ closeModal }) => {
       setDescription("");
       closeModal();
       // API [POST] api/channel
+      ChatAPI.addChatRoom(submitForm)
+        .then((res) => {
+          console.log("채널 추가 ", res);
+          // props로 state 관리
+        })
+        .catch((error) => {
+          console.log("채널생성 실패", error);
+        });
     }
   };
+  useEffect(() => {
+    // 모달 닫으면 값 초기화
+    setChannelName("");
+    setDescription("");
+  }, [visible]);
 
   return (
     <ChannelCreatorWrapper>

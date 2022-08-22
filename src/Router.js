@@ -10,6 +10,7 @@ const Router = () => {
         <Route path="/" element={<LoginPage />} />
         <Route exact path="/SignupPage" element={<SignupPage />} />
         <Route exact path="/channel" element={<ChannelHome />} />
+        <Route exact path="/channel/:channel_id" element={<ChannelHome />} />
       </Routes>
     </BrowserRouter>
   );
