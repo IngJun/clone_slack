@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ChannelList from "../components/channelList";
+import ChattingList from "../components/chattingList";
 import UserList from "../components/userList";
 
 const MainPage = () => {
@@ -11,7 +12,9 @@ const MainPage = () => {
           <ChannelList />
           <UserList />
         </MenuWrapper>
-        <ChattingWrapper></ChattingWrapper>
+        <ChattingWrapper>
+          <ChattingList></ChattingList>
+        </ChattingWrapper>
       </BodyWrapper>
     </MainPageWrapper>
   );
