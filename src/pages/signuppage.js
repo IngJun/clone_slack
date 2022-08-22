@@ -89,8 +89,8 @@ const SignupPage = (props) => {
                         >
                             
                     </TextField>
-                    <Button size='small' variant='contained' style={{maxwidth:'70px',flex:1,justifyContent:'center', margin:"15px 0px 0px 20px",fontSize:"10px"}} onClick={EmailCheck}>
-                      중복체크
+                    <Button size='small' variant='contained' style={{maxwidth:'100px',flex:1,justifyContent:'center', margin:"20px 10px 10px 10px",fontSize:"8px"}} onClick={EmailCheck}>
+                      중복 확인
                     </Button>
                 </Checkbox>
 
@@ -103,8 +103,8 @@ const SignupPage = (props) => {
                         >
                             
                     </TextField>
-                    <Button size='small' variant='contained' style={{maxwidth:'70px',flex:1,justifyContent:'center', margin:"15px 0px 0px 20px",fontSize:"10px"}}  onClick={NicknameCheck}>
-                      중복체크
+                    <Button size='small' variant='contained' style={{maxwidth:'100px',flex:1,justifyContent:'center', margin:"20px 10px 10px 10px",fontSize:"8px"}}  onClick={NicknameCheck}>
+                      중복 확인
                     </Button>
                 </Checkbox>
                 <div>
@@ -135,12 +135,16 @@ const SignupPage = (props) => {
                 {warning? (<Alert style={{border:"1px solid rgba(224,30,94,.4)",backgroundColor:"rgba(224,30,90,.1)",fontWeight:"bold",margin:"0px 0px 24px 0px"}}severity="warning">비밀번호가 일치하지 않습니다.</Alert>):""}
                 
                 </div>
-                {okid===true&&oknickname===true?(<Button variant='contained' style={{height:"44px",fontWeight:"bold", width:"100%", margin:"24px 0px 0px 0px", fontSize:"18px",color:"white", backgroundColor:"#4a154b"}} onClick={()=>{
+                {/* {okid===true&&oknickname===true?(<Button variant='contained' style={{height:"44px",fontWeight:"bold", width:"100%", margin:"24px 0px 0px 0px", fontSize:"18px",color:"white", backgroundColor:"#4a154b"}} onClick={()=>{
                     {
                       signup();
                       console.log('회원가입');
-                    }}}>회원가입</Button>):(<Button disabled variant='contained' style={{height:"44px",fontWeight:"bold", width:"100%", margin:"24px 0px 0px 0px", fontSize:"18px",color:"grey", backgroundColor:'rgb(74, 21, 75,.5)'}} >회원가입</Button>)}
-                
+                    }}}>회원가입</Button>):(<Button disabled variant='contained' style={{height:"44px",fontWeight:"bold", width:"100%", margin:"24px 0px 0px 0px", fontSize:"18px",color:"grey", backgroundColor:'rgb(74, 21, 75,.5)'}} >회원가입</Button>)} */}
+                <Button variant='contained' style={{height:"44px",fontWeight:"bold", width:"100%", margin:"24px 0px 0px 0px", fontSize:"18px",color:"white", backgroundColor:"#4a154b"}} onClick={()=>{
+                    {
+                      signup();
+                      console.log('회원가입');
+                    }}}>회원가입</Button>               
                   
 
                 

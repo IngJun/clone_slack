@@ -1,6 +1,6 @@
 import ChannelHome from "./ChannelHome";
-import Login from "./Login";
 import Channel from "./Channel"
-import signupPage from "./signuppage";
+import Loginpage from "./Loginpage";
+import SignupPage from "./SignupPage";
 
-export { ChannelHome, Channel, Login, signupPage };
+export { ChannelHome, Channel, Loginpage, SignupPage };

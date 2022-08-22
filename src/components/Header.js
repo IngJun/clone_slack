@@ -1,33 +1,27 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { useHistory } from 'react-router';
-// import { useHistory } from 'react-router-dom';
-
-// import { getCookie, deleteCookie } from '../shared/Cookie';
+import { useNavigate } from 'react-router';
 
 const Header = (props) => {
-  const history=useHistory();
+  const navigate=useNavigate();
   const is_register=props.is_register;
-  // console.log(props.history);
+  // console.log(props.navigate);
   return (
     <React.Fragment>
         <Header1>
           <div style={{flex:1, height:"50px", alignItems:'center', backgroundColor:'white'}}></div>
-          <div style={{flex:1, display:"flex" ,alignItems:'center',justifyContent: "center", backgroundColor:'whtie'}}>
+          <div style={{flex:2, display:"flex" ,alignItems:'center',justifyContent: "center", backgroundColor:'whtie'}}>
           <img style ={{alignItems:"center"}} src="https://a.slack-edge.com/bv1-9/slack_logo-ebd02d1.svg" height="34"/>
           </div>
           
-          <div style={{flex:1, display:'flex', justifyContent:'flex-end', alignItems:'center', backgroundColor:'white'}}>
-          {is_register?(""):(<div style={{textAlign:'right', fontSize:'13px',    color: (97,96,97), paddingRight:"40px"}}>
-              Slack을 처음 사용하시나요?
+          <div style={{flex:1, display:'flex', justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
+          {is_register?(""):(<div style={{textAlign:'right', fontSize:'16px',    color: (97,96,97), paddingRight:"40px"}}>
+              아직 계정이 없으시다면
               <br/>
-              <CreateId style={{ color:"blue", fontWeight:"bold"}} onClick={()=>{
-                console.log('history push to register1');
-                history.push('./register');
+              <CreateId style={{ color:"purple", fontWeight:"bold"}} onClick={()=>{
+                console.log('navigate push to signuppage');
+                navigate('/SignupPage');
               }}>계정 생성</CreateId>
-              {/* <button onClick={()=>{history.push('./register'); */}
-            {/* console.log('history push to register1');}}>asdf</button> */}
             </div>)}
             
           </div>

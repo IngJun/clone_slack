@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Button from '@material-ui/core/Button';
-import Google from '../assets/googlelogo.png';
-import Apple from '../assets/applelogo.jpg';
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import { idCheck } from '../shared/common';
@@ -12,7 +10,7 @@ import {useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/User';
 
 
-const Loginpage = (props) => {
+const LoginPage = (props) => {
     const [id, setId]= React.useState('');
     const [pwd,setPwd]= React.useState('');
     const [warning,setWarning]=React.useState(false);
@@ -38,24 +36,7 @@ const Loginpage = (props) => {
         <Page>
             <Header />
             <Main>
-                <h1 style={{ fontSize: "48px", margin: "15px 0px 0px 0px" }}>이메일로 로그인해 보세요 </h1>
-                <Subheader>
-                    <strong>직장에서 사용하는 이메일 주소</strong>로 로그인하는 걸 추천드려요.
-                </Subheader>
                 <Signin>
-                    <Button style={styles}
-                        color='primary'
-                        variant='outlined'
-                    >   <img style={{ width: "15px", height: "15px", margin: "0px 10px 0px 0px" }} src={Google} ></img><strong style={{ fontSize: "18px" }}>Google 계정으로 로그인</strong></Button>
-
-                    <Button
-                        style={styles}
-                    ><img style={{ height: "30px", margin: "0px 10px 0px 0px" }} src={Apple} ></img><strong style={{ fontSize: "18px" }}>Apple 계정으로 로그인</strong></Button>
-                    <div style={{ margin: "24px 0px 24px 0px", display: "flex", alignItems: "center" }}>
-                        <hr style={{ flexGrow: "1", margin: "0px 10px 0px 0px" }}></hr>
-                        <div style={{ fontSize: "15px" }}>또는</div>
-                        <hr style={{ flexGrow: "1", margin: "0px 0px 0px 10px" }}></hr>
-                    </div>
                     <div>
                         {warning ? (<TextField style={warninginput}
                             onChange={(e) => {
@@ -86,19 +67,9 @@ const Loginpage = (props) => {
                         {
                             login();
                         }
-                    }}>이메일로 로그인</Button>
-
-                    <div style={{ margin: "24px 0px 0px 0px", background: "rgba(29,28,29,.05)", display: "flex", padding: "12px 24px", borderRadius: "8px" }}>
-                        <HiOutlineSparkles style={{ display: "inline-flex", position: "relative", width: "25px", height: "20px", alignContent: "center", justifyContent: "center" }} />
-                        <span style={{ fontSize: "15px", lineHeight: "1.46668", paddingLeft: "12px", color: "rgba(97,96,97,1)" }}>
-                            비밀번호 없이 로그인할 수 있도록 매직코드를 이메일로 보내드려요. 또는 <a style={{ color: "blue" }}>수동으로 로그인</a>하셔도 됩니다.
-                        </span>
-                    </div>
+                    }}>로그인</Button>
                 </Signin>
             </Main>
-            <div>
-                <h1>footer</h1>
-            </div>
         </Page>
     );
 }
@@ -174,4 +145,4 @@ background-color:white;
 //     },
 //   }));
 
-export default Loginpage;
+export default LoginPage;

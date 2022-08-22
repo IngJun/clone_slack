@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Image } from "../elements";
+import { Image } from "../components/common";
 import Button from '@material-ui/core/Button';
 import {HiDotsHorizontal} from "react-icons/hi";
 import {BsEmojiSmile, BsPencil} from "react-icons/bs"

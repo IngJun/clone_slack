@@ -3,16 +3,16 @@ axios.defaults.withCredentials = true;
 
 const token = sessionStorage.getItem('token');
 const api = axios.create({
-  baseURL: '',
+  baseURL: 'http://15.165.158.16/',
 });
 
 export const apis = {
   //user
 
   login: (id, pw) => api.post('/auth/login', { username: id, password: pw }),
-  signup: (id, nickname, pw, pwcheck) => api.post('/api/auth/signup', {
+  signup: (id, nickname, pw, pwcheck) => api.post('/auth/signup', {
     username: id,
-    nickName: nickname,
+    nickname: nickname,
     password: pw,
     passwordCheck: pwcheck
   }),
