@@ -57,7 +57,6 @@ const UserList = () => {
         </PlusIconBox>
         인원 추가
       </UserContainer>
-
       <Modal visible={modalToggel} closeModal={closeModal}>
         <UserCreator closeModal={closeModal}></UserCreator>
       </Modal>

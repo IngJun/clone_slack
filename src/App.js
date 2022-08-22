@@ -1,13 +1,11 @@
-import { ThemeProvider } from "styled-components";
 import "./App.css";
-import MainPage from "./pages/mainpage";
-import theme from "./shared/themeStyle";
+import Router from "./Router";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <MainPage />
-    </ThemeProvider>
+    <div className="App">
+      <Router />
+    </div>
   );
 }
 
