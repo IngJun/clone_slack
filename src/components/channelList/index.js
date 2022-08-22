@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiPlus, IconName } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
 
 import ChannelCreator from "../ChannelCreator";
 import Modal from "../common/modal";
@@ -31,12 +31,11 @@ const channels = [
 
 const ChannelList = () => {
   const [modalToggel, setModlaToggle] = useState(false);
-
   const closeModal = () => {
     setModlaToggle(false);
   };
 
-  // [GFT] api/channel/list
+  // [GFT] api/channel/list 채널목록 조회
   return (
     <ChannelListWrapper>
       {channels.map((channel) => (
@@ -54,7 +53,7 @@ const ChannelList = () => {
 
       <Modal visible={modalToggel} closeModal={closeModal}>
         {/* 여기에 원하는 태그 넣어서 사용 */}
-        <ChannelCreator></ChannelCreator>
+        <ChannelCreator closeModal={closeModal}></ChannelCreator>
       </Modal>
     </ChannelListWrapper>
   );

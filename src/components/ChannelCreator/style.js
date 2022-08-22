@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ChannelCreatorWrapper = styled.div`
-  height: 200px;
+  /* height: 200px; */
   width: 400px;
   padding: 10px;
   display: flex;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiPlus, IconName } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
 
 import Modal from "../common/modal";
 import UserCreator from "../userCreator";
@@ -34,11 +34,13 @@ const UserList = () => {
     setModlaToggle(false);
   };
 
+  // [GET] /api/users/{channel_id}
+
   return (
     <UserListWrapper>
       <ChannelInfo>채널이름 넣기</ChannelInfo>
       {userData.map((user) => (
-        <UserContainer>
+        <UserContainer key={user.username}>
           <UserProfileImageBox>
             <UserProfileImage src="images/profile.png" />
           </UserProfileImageBox>
@@ -57,7 +59,7 @@ const UserList = () => {
       </UserContainer>
 
       <Modal visible={modalToggel} closeModal={closeModal}>
-        <UserCreator></UserCreator>
+        <UserCreator closeModal={closeModal}></UserCreator>
       </Modal>
     </UserListWrapper>
   );

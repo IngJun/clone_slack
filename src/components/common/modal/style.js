@@ -6,6 +6,7 @@ export const ModalWrapper = styled.div`
   display: ${(props) => (props.visible ? "block" : "none")};
   position: fixed;
   top: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 99;
   cursor: pointer;
