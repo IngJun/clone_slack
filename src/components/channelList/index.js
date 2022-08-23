@@ -7,32 +7,11 @@ import { ChannelIcon, ChannelListWrapper, PlusIcon } from "./style";
 import { ChatAPI } from "../../shared/api";
 import { useNavigate, useParams } from "react-router";
 
-const channels = [
-  {
-    channel_id: 1,
-    channelName: "항해",
-    owner: true,
-    description: "ff",
-  },
-  {
-    channel_id: 2,
-    channelName: "내 채널",
-    owner: false,
-    description: "ff",
-  },
-  {
-    channel_id: 3,
-    channelName: "My Channel",
-    owner: false,
-    description: "ff",
-  },
-];
-
 const ChannelList = () => {
   const [modalToggel, setModlaToggle] = useState(false);
   const params = useParams().channel_id;
 
-  // const [channels, setChannels] = useState([]);
+  const [channels, setChannels] = useState([]);
 
   const closeModal = () => {
     setModlaToggle(false);
@@ -45,13 +24,14 @@ const ChannelList = () => {
     // console.log("채널 정보 불러오기", params);
     ChatAPI.getChatRoom()
       .then((res) => {
-        console.log(res);
-        // channels를 state로
+        console.log("전체 채널 리스트: ", res.data);
+        setChannels(res.data);
       })
       .catch((error) => {
         console.log("채널리스트 조회 실패", error);
       });
   }, []);
+
   return (
     <ChannelListWrapper>
       {channels.map((channel) => (
@@ -76,6 +56,8 @@ const ChannelList = () => {
         <ChannelCreator
           visible={modalToggel}
           closeModal={closeModal}
+          channels={channels}
+          setChannels={setChannels}
         ></ChannelCreator>
       </Modal>
     </ChannelListWrapper>

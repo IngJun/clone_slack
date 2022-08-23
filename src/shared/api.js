@@ -56,8 +56,8 @@ export const ChatAPI = {
     }),
 
   // 채널 삭제하기
-  deleteChatRoom: (channel_id) =>
-    api.delete(`/api/channel/${channel_id}`, {
+  exitChatRoom: (channel_id) =>
+    api.delete(`/api/channel/exit/${channel_id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
@@ -72,17 +72,18 @@ export const ChatAPI = {
     }),
 
   getUserList: (channel_id) =>
-    api.get(`/api/channel/${channel_id}`, {
+    api.get(`/api/channel/userlist/${channel_id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
     }),
 
   // 유저 초대하기
-  inviteUser: (channel_id, username) =>
+  inviteUser: (form) =>
     api.post(
       `/api/channel/invite`,
-      { username: username, channel_id: channel_id },
+      // { inviteUser: username, channel_id: channel_id },
+      form,
       {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
