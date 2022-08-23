@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/loginpage";
-import SignupPage from "./pages/signuppage";
+import SignupPage from "./pages/SignupPage";
 import ChannelHome from "./pages/channelhome";
 const Router = () => {
   return (
