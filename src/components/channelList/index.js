@@ -24,8 +24,8 @@ const ChannelList = () => {
     // console.log("채널 정보 불러오기", params);
     ChatAPI.getChatRoom()
       .then((res) => {
-        // console.log("res: ", res.data);
-        setChannels([...res.data]);
+        console.log("전체 채널 리스트: ", res.data);
+        setChannels(res.data);
       })
       .catch((error) => {
         console.log("채널리스트 조회 실패", error);

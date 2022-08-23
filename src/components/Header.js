@@ -26,11 +26,21 @@ const Header = (props) => {
             backgroundColor: "whtie",
           }}
         >
-          <img
-            style={{ alignItems: "center" }}
-            src="https://a.slack-edge.com/bv1-9/slack_logo-ebd02d1.svg"
-            height="34"
-          />
+          <Logoclick
+                onClick={() => {
+                  console.log("navigate push to loginPage");
+                  navigate("/");
+                }}
+              >          
+              <img
+              style={{ alignItems: "center" }}
+              src="https://a.slack-edge.com/bv1-9/slack_logo-ebd02d1.svg"
+              height="34"
+              />
+          </Logoclick>
+
+
+          
         </div>
 
         <div
@@ -85,6 +95,11 @@ const Header1 = styled.div`
   background-color: white;
 `;
 const CreateId = styled.a`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const Logoclick = styled.a`
   &:hover {
     cursor: pointer;
   }

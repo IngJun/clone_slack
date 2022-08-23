@@ -41,7 +41,7 @@ const UserList = () => {
       ChatAPI.getUserList(params)
         .then((res) => {
           // console.log("res", res.data);
-          setUserData([...res.data]);
+          setUserData(res.data);
         })
         .catch((error) => {
           console.log("유저리스트 조회 실패", error);

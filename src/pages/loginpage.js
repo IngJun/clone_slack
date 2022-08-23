@@ -8,12 +8,14 @@ import { idCheck } from "../shared/common";
 import { HiOutlineSparkles } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/User";
+import { useNavigate } from "react-router";
 
 const LoginPage = (props) => {
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
   const [warning, setWarning] = React.useState(false);
   const dispatch = useDispatch();
+  const navigate =  useNavigate();
   const login = () => {
     if (!idCheck(id)) {
       setWarning(true);
@@ -26,6 +28,7 @@ const LoginPage = (props) => {
       return;
     }
     dispatch(userActions.loginFB(id, pwd));
+    navigate("/channel")
   };
 
   return (

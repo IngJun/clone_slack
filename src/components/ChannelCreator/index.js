@@ -28,7 +28,7 @@ const ChannelCreator = ({ visible, closeModal, channels, setChannels }) => {
       // API [POST] api/channel
       ChatAPI.addChatRoom(submitForm)
         .then((res) => {
-          // console.log("채널 추가 ", res.data);
+          console.log("채널 추가 ", res.data);
           setChannels([...channels, res.data]);
           // props로 state 관리
         })
