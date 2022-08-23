@@ -11,12 +11,13 @@ import {
   Text,
   TextBox,
 } from "./style";
+import { useParams } from "react-router";
 
-const UserCreator = ({ visible, closeModal }) => {
+const UserCreator = ({ visible, closeModal, userData, setUserData }) => {
   const [username, usernameHandler, setUsername] = useInput();
-
+  const params = useParams().channel_id;
   const submitForm = {
-    channel_id: 1, // Router연결 후 Params로 수정
+    channel_id: params, // Router연결 후 Params로 수정
     username: username,
   };
   const onSubmit = async () => {
@@ -24,18 +25,18 @@ const UserCreator = ({ visible, closeModal }) => {
       alert("빈칸없이 작성해주세요");
       return;
     } else {
-      console.log(submitForm);
-      setUsername("");
-      closeModal();
       // [POST] api/channel/invite
       ChatAPI.inviteUser(submitForm)
         .then((res) => {
-          console.log("유저 추가", res);
+          // console.log("유저 추가", res.data);
+          setUserData([...userData, res.data]);
           // props로 state 관리
         })
         .catch((error) => {
           console.log("유저추가 실패", error);
         });
+      setUsername("");
+      closeModal();
     }
   };
   useEffect(() => {

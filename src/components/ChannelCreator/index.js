@@ -12,7 +12,7 @@ import {
   TextBox,
 } from "./style";
 
-const ChannelCreator = ({ visible, closeModal }) => {
+const ChannelCreator = ({ visible, closeModal, channels, setChannels }) => {
   const [channelName, channelNameHandler, setChannelName] = useInput();
   const [description, descriptionHandler, setDescription] = useInput();
 
@@ -25,19 +25,19 @@ const ChannelCreator = ({ visible, closeModal }) => {
       alert("빈칸없이 작성해주세요");
       return;
     } else {
-      console.log(submitForm);
-      setChannelName("");
-      setDescription("");
-      closeModal();
       // API [POST] api/channel
       ChatAPI.addChatRoom(submitForm)
         .then((res) => {
-          console.log("채널 추가 ", res);
+          // console.log("채널 추가 ", res.data);
+          setChannels([...channels, res.data]);
           // props로 state 관리
         })
         .catch((error) => {
           console.log("채널생성 실패", error);
         });
+      setChannelName("");
+      setDescription("");
+      closeModal();
     }
   };
   useEffect(() => {

@@ -13,6 +13,7 @@ export const ChannelInfo = styled.div`
   height: 60px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 15px;
   border-bottom: 0.1px solid grey;
   color: white;
