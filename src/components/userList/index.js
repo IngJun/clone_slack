@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FiPlus, FiLogOut } from "react-icons/fi";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 import Modal from "../common/modal";
 import UserCreator from "../userCreator";
@@ -17,6 +17,7 @@ import {
 const UserList = () => {
   const [modalToggel, setModlaToggle] = useState(false);
   const params = useParams().channel_id;
+  const navigate = useNavigate();
   const closeModal = () => {
     setModlaToggle(false);
   };
@@ -26,6 +27,7 @@ const UserList = () => {
   const exitChannel = () => {
     ChatAPI.exitChatRoom(params)
       .then((res) => {
+        navigate("/channel");
         window.location.reload();
       })
       .catch((error) => {
