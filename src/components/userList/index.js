@@ -60,7 +60,9 @@ const UserList = () => {
       {userData.map((user) => (
         <UserContainer key={user.username}>
           <UserProfileImageBox>
-            <UserProfileImage src="images/profile.png" />
+            <UserProfileImage
+              src={`${process.env.PUBLIC_URL}/images/profile.png`}
+            />
           </UserProfileImageBox>
           {user.username}
         </UserContainer>

@@ -40,8 +40,10 @@ const ChattingList = () => {
 
   const connect = () => {
     client.connect(headers, onConnected, onError);
-    // console.log("채팅방 연결");
+    console.log("채팅방 연결");
   };
+
+  // console.log("채팅 데이터 리스트", messageList);
 
   const onConnected = () => {
     console.log("연결됨");
@@ -52,7 +54,7 @@ const ChattingList = () => {
         if (message.body) {
           const new_Data = JSON.parse(message.body);
           console.log("new_Data", new_Data.message);
-          console.log("채팅 데이터 리스트", messageList);
+          // messageList.push(new_Data);
           setMessageList([...messageList, new_Data]);
         } else {
           alert("메세지가 없습니다.");

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Button from "@material-ui/core/Button";
@@ -6,17 +6,21 @@ import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import { idCheck } from "../shared/common";
 import { HiOutlineSparkles } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/User";
 import { useNavigate } from "react-router";
 
 const LoginPage = (props) => {
+  const isLogin = useSelector((state) => {
+    return state.user.is_loaded;
+  });
+  const [token, setToken] = useState(isLogin);
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
   const [warning, setWarning] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const login = async () => {
+  const login = () => {
     if (!idCheck(id)) {
       setWarning(true);
       console.log(warning);
@@ -27,9 +31,15 @@ const LoginPage = (props) => {
       window.alert("아이디와 비밀번호를 모두 입력해주세요!");
       return;
     }
-    await dispatch(userActions.loginFB(id, pwd));
-    navigate("/channel");
+    dispatch(userActions.loginFB(id, pwd));
+    // navigate("/channel");
   };
+
+  // useEffect(() => {
+  //   if (token === true) {
+  //     navigate("/channel");
+  //   }
+  // }, [token]);
 
   return (
     <Page>

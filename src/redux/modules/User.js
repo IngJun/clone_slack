@@ -3,7 +3,7 @@ import { produce } from "immer";
 import { setCookie, deleteCookie } from "../../shared/Cookie";
 // import { auth } from '../../shared/firebase';
 //
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { apis } from "../../shared/api";
 import jwtDecode from "jwt-decode";
 
@@ -33,7 +33,6 @@ const initialState = {
 const loginFB = (id, pwd) => {
   return function (dispatch) {
     console.log("LogInDB :", id, "/", pwd);
-
     apis
       .login(id, pwd)
       .then((response) => {
@@ -50,7 +49,6 @@ const loginFB = (id, pwd) => {
           id: decode.USER_ID,
         };
         dispatch(setUser(user_data));
-        // <Navigate to="/channel" />;
       })
       .catch((error) => {
         alert("아이디와 비밀번호를 다시 확인해주세요.");
