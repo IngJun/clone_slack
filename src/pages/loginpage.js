@@ -15,8 +15,8 @@ const LoginPage = (props) => {
   const [pwd, setPwd] = React.useState("");
   const [warning, setWarning] = React.useState(false);
   const dispatch = useDispatch();
-  const navigate =  useNavigate();
-  const login = () => {
+  const navigate = useNavigate();
+  const login = async () => {
     if (!idCheck(id)) {
       setWarning(true);
       console.log(warning);
@@ -27,8 +27,8 @@ const LoginPage = (props) => {
       window.alert("아이디와 비밀번호를 모두 입력해주세요!");
       return;
     }
-    dispatch(userActions.loginFB(id, pwd));
-    navigate("/channel")
+    await dispatch(userActions.loginFB(id, pwd));
+    navigate("/channel");
   };
 
   return (
@@ -89,11 +89,7 @@ const LoginPage = (props) => {
               color: "white",
               backgroundColor: "#4a154b",
             }}
-            onClick={() => {
-              {
-                login();
-              }
-            }}
+            onClick={login}
           >
             로그인
           </Button>

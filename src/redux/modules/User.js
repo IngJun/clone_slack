@@ -3,7 +3,7 @@ import { produce } from "immer";
 import { setCookie, deleteCookie } from "../../shared/Cookie";
 // import { auth } from '../../shared/firebase';
 //
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 import { apis } from "../../shared/api";
 import jwtDecode from "jwt-decode";
 
@@ -18,7 +18,6 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 const getAllUser = createAction(GET_ALL_USER, (user_list) => ({ user_list }));
-
 
 // initialState
 const initialState = {
@@ -51,7 +50,7 @@ const loginFB = (id, pwd) => {
           id: decode.USER_ID,
         };
         dispatch(setUser(user_data));
-        <Navigate to="/channel" />
+        // <Navigate to="/channel" />;
       })
       .catch((error) => {
         alert("아이디와 비밀번호를 다시 확인해주세요.");

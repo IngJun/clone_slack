@@ -21,10 +21,11 @@ const ChannelList = () => {
 
   // [GFT] api/channel/list 채널목록 조회
   useEffect(() => {
+    console.log(sessionStorage.getItem("token"));
     // console.log("채널 정보 불러오기", params);
     ChatAPI.getChatRoom()
       .then((res) => {
-        console.log("전체 채널 리스트: ", res.data);
+        // console.log("전체 채널 리스트: ", res.data);
         setChannels(res.data);
       })
       .catch((error) => {
