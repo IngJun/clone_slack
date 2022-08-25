@@ -1,5 +1,5 @@
 import { createAction, handleActions } from "redux-actions";
-import { produce } from "immer";
+import { current, produce } from "immer";
 import { setCookie, deleteCookie } from "../../shared/Cookie";
 // import { auth } from '../../shared/firebase';
 //
@@ -32,7 +32,7 @@ const initialState = {
 
 const loginFB = (id, pwd) => {
   return function (dispatch) {
-    console.log("LogInDB :", id, "/", pwd);
+    // console.log("LogInDB :", id, "/", pwd);
     apis
       .login(id, pwd)
       .then((response) => {
@@ -42,9 +42,9 @@ const loginFB = (id, pwd) => {
         const decode = jwtDecode(token);
 
         sessionStorage.setItem("token", token);
-
+        window.localStorage.setItem("username", id);
         const user_data = {
-          username: decode.USER_NAME,
+          username: id,
           nickname: decode.NICKNAME,
           id: decode.USER_ID,
         };
@@ -121,8 +121,9 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        console.log("SET_USER : user", action.payload.user);
-        draft.user = action.payload.user;
+        console.log("SET_USER : user", action.payload.user.username);
+        console.log(current(draft));
+        draft.username = action.payload.user.username;
         draft.is_login = true;
         draft.is_loaded = true;
       }),

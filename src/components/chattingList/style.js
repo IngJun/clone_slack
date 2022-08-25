@@ -9,9 +9,10 @@ export const ChattingListWrapper = styled.div`
 `;
 export const MessageListWrapper = styled.div`
   /* background-color: red; */
+  overflow: auto;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: end;
   gap: 15px;
 `;

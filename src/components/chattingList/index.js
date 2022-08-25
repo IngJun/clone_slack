@@ -1,6 +1,6 @@
 import useInput from "../../shared/hooks/useInput";
 import { FiSend } from "react-icons/fi";
-import { MessageWrapper } from "../message/style";
+// import { MessageWrapper } from "../message/style";
 import {
   ChattingInputWrapper,
   ChattingListWrapper,
@@ -13,16 +13,19 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import StompJS from "stompjs";
 import SockJS from "sockjs-client";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import Message from "../message";
 
 const ChattingList = () => {
-  // console.log("랜더링 됨");
+  const username = window.localStorage.getItem("username");
   const [message, messageHandler, setMessage] = useInput();
   const [messageList, setMessageList] = useState([]);
   const params = useParams().channel_id;
   const headers = {
     Authorization: `Bearer ${sessionStorage.getItem("token")}`,
   };
-  // console.log("headers", sessionStorage.getItem("token"));
+
   // 엔드포인트
   let sock = new SockJS(`http://15.165.158.16/socket`);
   let client = StompJS.over(sock);
@@ -33,10 +36,18 @@ const ChattingList = () => {
       connect();
       return () => {
         client.disconnect();
+        window.location.reload();
       };
     }
     return client.disconnect();
   }, [params]);
+
+  useEffect(() => {
+    axios.get(`http://15.165.158.16/entry/${params}`, headers).then((res) => {
+      console.log("서버에 전체 채팅 목록 요청", res.data.list);
+      setMessageList([...res.data.list]);
+    });
+  }, []);
 
   const connect = () => {
     client.connect(headers, onConnected, onError);
@@ -55,7 +66,9 @@ const ChattingList = () => {
           const new_Data = JSON.parse(message.body);
           console.log("new_Data", new_Data.message);
           // messageList.push(new_Data);
+          console.log(messageList);
           setMessageList([...messageList, new_Data]);
+          // window.location.reload();
         } else {
           alert("메세지가 없습니다.");
         }
@@ -78,12 +91,18 @@ const ChattingList = () => {
       })
     );
     setMessage("");
+    window.location.reload();
   };
   return (
     <ChattingListWrapper>
       <MessageListWrapper>
-        {messageList.map((message) => (
-          <MessageWrapper>{message.message}</MessageWrapper>
+        {messageList.map((message, index) => (
+          <Message
+            key={index}
+            message={message.message}
+            nickname={message.nickname}
+            myMessage={message.username === username ? true : false}
+          />
         ))}
       </MessageListWrapper>
 

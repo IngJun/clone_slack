@@ -54,7 +54,7 @@ const UserList = () => {
   return (
     <UserListWrapper>
       <ChannelInfo>
-        채널이름 넣기
+        유저 목록
         <FiLogOut onClick={exitChannel} />
       </ChannelInfo>
       {userData.map((user) => (

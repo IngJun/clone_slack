@@ -9,11 +9,13 @@ import { HiOutlineSparkles } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/User";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const LoginPage = (props) => {
   const isLogin = useSelector((state) => {
     return state.user.is_loaded;
   });
+  // console.log(isLogin);
   const [token, setToken] = useState(isLogin);
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
@@ -35,11 +37,11 @@ const LoginPage = (props) => {
     // navigate("/channel");
   };
 
-  // useEffect(() => {
-  //   if (token === true) {
-  //     navigate("/channel");
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (isLogin === true) {
+      navigate("/channel");
+    }
+  }, [isLogin]);
 
   return (
     <Page>
