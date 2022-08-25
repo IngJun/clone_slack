@@ -1,9 +1,9 @@
 import { createAction, handleActions } from "redux-actions";
-import { produce } from "immer";
+import { current, produce } from "immer";
 import { setCookie, deleteCookie } from "../../shared/Cookie";
 // import { auth } from '../../shared/firebase';
 //
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { apis } from "../../shared/api";
 import jwtDecode from "jwt-decode";
 
@@ -32,8 +32,7 @@ const initialState = {
 
 const loginFB = (id, pwd) => {
   return function (dispatch) {
-    console.log("LogInDB :", id, "/", pwd);
-
+    // console.log("LogInDB :", id, "/", pwd);
     apis
       .login(id, pwd)
       .then((response) => {
@@ -43,14 +42,13 @@ const loginFB = (id, pwd) => {
         const decode = jwtDecode(token);
 
         sessionStorage.setItem("token", token);
-
+        window.localStorage.setItem("username", id);
         const user_data = {
-          username: decode.USER_NAME,
+          username: id,
           nickname: decode.NICKNAME,
           id: decode.USER_ID,
         };
         dispatch(setUser(user_data));
-        // <Navigate to="/channel" />;
       })
       .catch((error) => {
         alert("아이디와 비밀번호를 다시 확인해주세요.");
@@ -123,8 +121,9 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        console.log("SET_USER : user", action.payload.user);
-        draft.user = action.payload.user;
+        console.log("SET_USER : user", action.payload.user.username);
+        console.log(current(draft));
+        draft.username = action.payload.user.username;
         draft.is_login = true;
         draft.is_loaded = true;
       }),

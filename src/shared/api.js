@@ -10,6 +10,12 @@ export const apis = {
   //user
 
   login: (id, pw) => api.post("/auth/login", { username: id, password: pw }),
+  logout: () =>
+    api.delete("auth/logout", {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
   signup: (id, nickname, pw, pwcheck) =>
     api.post("/auth/signup", {
       username: id,

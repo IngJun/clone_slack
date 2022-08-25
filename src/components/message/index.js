@@ -1,11 +1,13 @@
-import { MessageWrapper } from "./style";
+import { MessageWrapper, MessageText, Nickname, MessageLayout } from "./style";
 
-const Message = (props) => {
+const Message = ({ message, nickname, myMessage }) => {
   return (
-    <MessageWrapper>
-      dd
-      <span>{props.children}</span>
-    </MessageWrapper>
+    <MessageLayout myMessage={myMessage}>
+      <MessageWrapper>
+        <Nickname>{nickname}</Nickname>
+        <MessageText>{message}</MessageText>
+      </MessageWrapper>
+    </MessageLayout>
   );
 };
 

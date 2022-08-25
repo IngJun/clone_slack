@@ -39,10 +39,8 @@ const UserList = () => {
   useEffect(() => {
     // params 있을때만 유저데이터 가져오기
     if (params) {
-      // console.log("유저 정보 불러오기", params);
       ChatAPI.getUserList(params)
         .then((res) => {
-          // console.log("res", res.data);
           setUserData(res.data);
         })
         .catch((error) => {
@@ -54,13 +52,15 @@ const UserList = () => {
   return (
     <UserListWrapper>
       <ChannelInfo>
-        채널이름 넣기
+        유저 목록
         <FiLogOut onClick={exitChannel} />
       </ChannelInfo>
       {userData.map((user) => (
         <UserContainer key={user.username}>
           <UserProfileImageBox>
-            <UserProfileImage src="images/profile.png" />
+            <UserProfileImage
+              src={`${process.env.PUBLIC_URL}/images/profile.png`}
+            />
           </UserProfileImageBox>
           {user.username}
         </UserContainer>
