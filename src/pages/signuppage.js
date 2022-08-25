@@ -51,6 +51,7 @@ const SignupPage = (props) => {
           setOkid(true);
         } else {
           window.alert("중복된 아이디입니다.");
+          setOkid(false);
         }
       })
       .catch((error) => {
@@ -68,6 +69,7 @@ const SignupPage = (props) => {
           setokNickname(true);
         } else {
           window.alert("중복된 닉네임입니다.");
+          setokNickname(false);
         }
       })
       .catch((error) => {
