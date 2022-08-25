@@ -24,10 +24,9 @@ export const apis = {
       passwordCheck: pwcheck,
     }),
 
-  idcheck: (email) => api.post("api/user/idCheck", { username: email }),
+  idcheck: (email) => api.get(`user/idCheck/${email}`),
 
-  nicknamecheck: (nickname) =>
-    api.post("api/user/nickNameCheck", { nickName: nickname }),
+  nicknamecheck: (nickname) => api.get(`user/nicknameCheck/${nickname}`),
 
   islogin: () =>
     api.get("/api/isLogin", {

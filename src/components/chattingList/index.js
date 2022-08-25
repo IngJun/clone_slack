@@ -68,7 +68,7 @@ const ChattingList = () => {
           // messageList.push(new_Data);
           console.log(messageList);
           setMessageList([...messageList, new_Data]);
-          // window.location.reload();
+          window.location.reload();
         } else {
           alert("메세지가 없습니다.");
         }

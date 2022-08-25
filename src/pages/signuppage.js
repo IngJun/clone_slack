@@ -8,6 +8,7 @@ import Alert from "@mui/material/Alert";
 import { idCheck } from "../shared/common";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/User";
+import { useNavigate } from "react-router";
 
 // import { ButtonProps } from '@mui/material/Button';
 const SignupPage = (props) => {
@@ -19,8 +20,12 @@ const SignupPage = (props) => {
   const [idcheck, setIdcheck] = React.useState("true");
   const [nicknamecheck, setNicknamecheck] = React.useState("true");
   const [warning, setWarning] = React.useState(false);
-  const [oknickname, setokNickname] = React.useState("false");
-  const [okid, setOkid] = React.useState("false");
+  const [oknickname, setokNickname] = React.useState(false);
+  const [okid, setOkid] = React.useState(false);
+  const navigate = useNavigate();
+
+  console.log(okid, oknickname);
+
   const signup = () => {
     if ((id === "") | (nickname === "") | (pwd === "") | (pwdcheck === "")) {
       window.alert("아이디, 비밀번호, 닉네임을 모두 입력해주세요!");
@@ -34,21 +39,22 @@ const SignupPage = (props) => {
     }
 
     dispatch(userActions.signupFB(id, nickname, pwd, pwdcheck));
+    navigate("/");
   };
   const EmailCheck = () => {
     console.log("email check");
     apis
       .idcheck(id)
       .then((res) => {
-        console.log("emailcheck2");
-        window.alert(res.data);
-        res.data === "사용가능한 아이디 입니다."
-          ? setOkid(true)
-          : setOkid(false);
-        console.log(okid);
+        if (res.data) {
+          window.alert("사용가능한 아이디 입니다.");
+          setOkid(true);
+        } else {
+          window.alert("중복된 아이디입니다.");
+        }
       })
       .catch((error) => {
-        console.log("emailcheck error");
+        console.log("중복된 아이디입니다.");
         console.log(error);
       });
   };
@@ -57,16 +63,15 @@ const SignupPage = (props) => {
     apis
       .nicknamecheck(nickname)
       .then((res) => {
-        console.log("nickname check success");
-        res.data === "사용가능한 닉네임 입니다."
-          ? setokNickname(true)
-          : setokNickname(false);
-        console.log(oknickname);
-        window.alert(res.data);
+        if (res.data) {
+          window.alert("사용가능한 닉네임 입니다.");
+          setokNickname(true);
+        } else {
+          window.alert("중복된 닉네임입니다.");
+        }
       })
       .catch((error) => {
-        console.log("nicknamecheck error");
-        console.log(error);
+        window.alert("중복된 닉네임입니다.");
       });
   };
 
@@ -88,7 +93,6 @@ const SignupPage = (props) => {
               // ForwardRef={id}
               onChange={(e) => {
                 setId(e.target.value);
-                console.log(e.target.value);
               }}
             ></TextField>
             <Button
@@ -113,7 +117,6 @@ const SignupPage = (props) => {
               style={inputstyles}
               onChange={(e) => {
                 setNickname(e.target.value);
-                console.log(e.target.value);
               }}
             ></TextField>
             <Button
@@ -170,12 +173,46 @@ const SignupPage = (props) => {
               ""
             )}
           </div>
-          {/* {okid===true&&oknickname===true?(<Button variant='contained' style={{height:"44px",fontWeight:"bold", width:"100%", margin:"24px 0px 0px 0px", fontSize:"18px",color:"white", backgroundColor:"#4a154b"}} onClick={()=>{
-                    {
-                      signup();
-                      console.log('회원가입');
-                    }}}>회원가입</Button>):(<Button disabled variant='contained' style={{height:"44px",fontWeight:"bold", width:"100%", margin:"24px 0px 0px 0px", fontSize:"18px",color:"grey", backgroundColor:'rgb(74, 21, 75,.5)'}} >회원가입</Button>)} */}
-          <Button
+          {okid === true && oknickname === true ? (
+            <Button
+              variant="contained"
+              style={{
+                height: "44px",
+                fontWeight: "bold",
+                width: "100%",
+                margin: "24px 0px 0px 0px",
+                fontSize: "18px",
+                color: "white",
+                backgroundColor: "#4a154b",
+              }}
+              onClick={() => {
+                {
+                  signup();
+                  console.log("회원가입");
+                }
+              }}
+            >
+              회원가입
+            </Button>
+          ) : (
+            <Button
+              disabled
+              variant="contained"
+              style={{
+                height: "44px",
+                fontWeight: "bold",
+                width: "100%",
+                margin: "24px 0px 0px 0px",
+                fontSize: "18px",
+                color: "grey",
+                backgroundColor: "rgb(74, 21, 75,.5)",
+              }}
+            >
+              회원가입
+            </Button>
+          )}
+
+          {/* <Button
             variant="contained"
             style={{
               height: "44px",
@@ -194,7 +231,7 @@ const SignupPage = (props) => {
             }}
           >
             회원가입
-          </Button>
+          </Button> */}
         </Registerbox>
       </Main>
     </Page>
